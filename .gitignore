@@ -1,0 +1,18 @@
+# Ignore Parcel Cache
+.parcel-cache/
+
+# Ignore build output folder 
+dist/
+
+# Ignore Vs Code workspace settings
+.vscode/
+
+# Ignore system files (Windows, macOS)
+Thumbs.db
+.DS_Store
+
+# Ignore log files
+*.log
+
+# Ignore node modules
+node_modules
