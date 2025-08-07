@@ -3,7 +3,7 @@ import recipeView from './views/recipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-/////////////////////////////////////
+//============================================
 const recipeContainer = document.querySelector('.recipe');
 
 // NEW API URL (instead of the one shown in the video)
@@ -27,10 +27,11 @@ const controlRecipes = async function () {
     alert(err.message);
   }
 };
-// controlRecipes();
 
-['hashchange', 'load'].forEach(ev =>
-  window.addEventListener(ev, controlRecipes)
-);
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+init();
+
 // window.addEventListener('hashchange', controlRecipes);
 // window.addEventListener('load', controlRecipes);

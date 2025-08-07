@@ -1,8 +1,8 @@
 // import icons from '../img/icons.svg' // parcel1
 import icons from 'url:../../img/icons.svg'; // parcel2
-
 import fracty from 'fracty';
 
+//============================================
 class recipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
@@ -114,6 +114,10 @@ class recipeView {
           </a>
         </div>
     `;
+  }
+
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
   #generateMarkupIngredients(ing) {
