@@ -2,7 +2,6 @@
 import icons from 'url:../../img/icons.svg'; // parcel2
 
 import fracty from 'fracty';
-console.log(fracty);
 
 class recipeView {
   #parentElement = document.querySelector('.recipe');
@@ -97,7 +96,7 @@ class recipeView {
         <div class="recipe__directions">
           <h2 class="heading--2">How to cook it</h2>
           <p class="recipe__directions-text">
-            This this.#data was carefully designed and tested by
+            This recipe was carefully designed and tested by
             <span class="recipe__publisher">${
               this.#data.publisher
             }</span>. Please check out
