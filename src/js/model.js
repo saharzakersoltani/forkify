@@ -44,10 +44,10 @@ export const loadSearchResult = async function (query) {
 
     state.search.results = data.data.recipes.map(rec => {
       return {
-        publisher: rec.publisher,
-        image: rec.image_url,
         id: rec.id,
         title: rec.title,
+        publisher: rec.publisher,
+        image: rec.image_url,
       };
     });
   } catch (err) {
