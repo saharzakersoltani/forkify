@@ -3,6 +3,7 @@ import icons from 'url:../../img/icons.svg'; // parcel2
 
 class ResultsView extends View {
   _parentElement = document.querySelector('.results');
+  _errorMessage = 'No recipes found for your query! Please try again ;)';
 
   _generateMarkup() {
     console.log(this._data);
