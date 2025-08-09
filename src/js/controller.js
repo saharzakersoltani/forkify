@@ -8,9 +8,9 @@ import 'regenerator-runtime/runtime';
 //============================================
 const recipeContainer = document.querySelector('.recipe');
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 // NEW API URL (instead of the one shown in the video)
 // https://forkify-api.jonas.io
@@ -48,7 +48,7 @@ const controlSearchResults = async function () {
 
     // 3) Render results
     console.log(model.state.search.results);
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage());
   } catch (err) {
     console.error(err);
   }
