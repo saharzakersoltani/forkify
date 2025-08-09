@@ -3,6 +3,8 @@ import icons from 'url:../../img/icons.svg'; // parcel2
 import fracty from 'fracty';
 import view from './view.js';
 
+const recipeContainer = document.querySelector('.recipe');
+
 //============================================
 class RecipeView extends view {
   _parentElement = document.querySelector('.recipe');
