@@ -6,6 +6,7 @@ import paginationView from './views/paginationView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import recipeView from './views/recipeView.js';
 //============================================
 
 // if (module.hot) {
@@ -65,9 +66,19 @@ const controlPagination = function (btnGoToPage) {
   paginationView.render(model.state.search);
 };
 
+//=============== control serving ================
+const controlServing = function (newServing) {
+  // update the recipe servings (in state)
+  model.updateServings(newServing);
+
+  // update the recipe view
+  RecipeView.render(model.state.recipe);
+};
+
 //============== add handler render ===============
 const init = function () {
   RecipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServing);
   SearchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
