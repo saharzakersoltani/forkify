@@ -76,10 +76,20 @@ const controlServing = function (newServing) {
   RecipeView.update(model.state.recipe); // just update text and attributes in the DOM without re-render entire view
 };
 
+//=============== control bookmarks ================
+const controlAddBookmarks = function () {
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.deleteBookmark(model.state.recipe.id);
+
+  console.log(model.state.recipe);
+  recipeView.update(model.state.recipe);
+};
+
 //============== add handler render ===============
 const init = function () {
   RecipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServing);
+  recipeView.addHandlerAddBookmark(controlAddBookmarks);
   SearchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
