@@ -17,15 +17,17 @@ import recipeView from './views/recipeView.js';
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-    if (!id) return;
 
-    // Rendering spinner
+    if (!id) return;
     RecipeView.renderSpinner();
 
-    // Loading recipe
+    // 0) Update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+
+    // 1) Loading recipe
     await model.loadRecipe(id);
 
-    // Rendering recipe
+    // 2) Rendering recipe
     RecipeView.render(model.state.recipe);
   } catch (err) {
     RecipeView.renderError();
@@ -72,7 +74,8 @@ const controlServing = function (newServing) {
   model.updateServings(newServing);
 
   // update the recipe view
-  RecipeView.render(model.state.recipe);
+  // RecipeView.render(model.state.recipe);
+  RecipeView.update(model.state.recipe); // just update text and attributes in the DOM without re-render entire view
 };
 
 //============== add handler render ===============
