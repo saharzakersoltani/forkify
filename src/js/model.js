@@ -29,6 +29,7 @@ export const loadRecipe = async function (id) {
       title: recipe.title,
     };
     console.log(recipe);
+    state.search.page = 1;
   } catch (err) {
     // Temp error handling
     console.error(`${err} 💥💥💥💥`);
