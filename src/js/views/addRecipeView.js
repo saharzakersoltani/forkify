@@ -33,10 +33,10 @@ class addRecipeView extends View {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
       const dataArr = [...new FormData(this)]; // By using formData we can get data of the form ES2019
-      console.log(dataArr);
+
       const data = Object.fromEntries(dataArr);
-      console.log(data);
-      handler();
+
+      handler(data);
     });
   }
 }
