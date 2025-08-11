@@ -121,6 +121,6 @@ init();
 
 // just for developer
 const clearBookmarks = function () {
-  localStorage.clear();
+  localStorage.clear('bookmarks');
 };
 // clearBookmarks();
