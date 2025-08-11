@@ -1,5 +1,5 @@
-import { API_URL, RESULTS_PER_PAGE } from './config.js';
-import { getJSON } from './helpers.js';
+import { API_URL, RESULTS_PER_PAGE, KEY } from './config.js';
+import { getJSON, SendJSON } from './helpers.js';
 
 // =================== state =====================
 export const state = {
@@ -14,23 +14,27 @@ export const state = {
 };
 
 //==================== load recipe ====================
+const createRecipeObject = function (data) {
+  const { recipe } = data.data;
+  return {
+    cookingTime: recipe.cooking_time,
+    id: recipe.id,
+    image: recipe.image_url,
+    ingredients: recipe.ingredients,
+    publisher: recipe.publisher,
+    servings: recipe.servings,
+    sourceUrl: recipe.source_url,
+    title: recipe.title,
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
     const data = await getJSON(`${API_URL}/${id}`);
 
-    let { recipe } = data.data;
-    state.recipe = {
-      cookingTime: recipe.cooking_time,
-      id: recipe.id,
-      image: recipe.image_url,
-      ingredients: recipe.ingredients,
-      publisher: recipe.publisher,
-      servings: recipe.servings,
-      sourceUrl: recipe.source_url,
-      title: recipe.title,
-    };
-    console.log(recipe);
-    state.search.page = 1;
+    state.recipe = createRecipeObject(data);
+
+    console.log(state.recipe);
 
     if (state.bookmark.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
@@ -126,11 +130,11 @@ const clearBookmarks = function () {
 // clearBookmarks();
 
 //=================== upload new recipe ===================
-export const uploadRecipe = async function (recipeNew) {
+export const uploadRecipe = async function (newRecipe) {
   try {
-    console.log(Object.entries(recipeNew));
+    console.log(Object.entries(newRecipe));
 
-    const ingredients = Object.entries(recipeNew)
+    const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
         const ingArr = ing[1].replaceAll(' ', '').split(',');
@@ -142,7 +146,24 @@ export const uploadRecipe = async function (recipeNew) {
         const [quantity, unit, description] = ingArr;
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-    console.log(ingredients);
+
+    console.log(newRecipe);
+
+    const recipe = {
+      cooking_time: +newRecipe.cookingTime,
+      image_url: newRecipe.image,
+      publisher: newRecipe.publisher,
+      servings: +newRecipe.servings,
+      source_url: newRecipe.sourceUrl,
+      title: newRecipe.title,
+      ingredients,
+    };
+
+    const data = await SendJSON(`${API_URL}?key=${KEY}`, recipe);
+
+    state.recipe = createRecipeObject(data);
+
+    console.log(recipe);
   } catch (err) {
     throw err;
   }
