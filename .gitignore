@@ -4,15 +4,11 @@
 # Ignore build output folder 
 dist/
 
+# Ignore node modules
+node_modules
+
 # Ignore Vs Code workspace settings
 .vscode/
 
-# Ignore system files (Windows, macOS)
+# Ignore system files (Windows)
 Thumbs.db
-.DS_Store
-
-# Ignore log files
-*.log
-
-# Ignore node modules
-node_modules
