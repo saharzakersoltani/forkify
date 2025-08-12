@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import { MODEL_CLOSE_SEC } from './config.js';
 import RecipeView from './views/recipeView.js';
 import SearchView from './views/searchView.js';
 import ResultsView from './views/resultsView.js';
@@ -8,7 +9,7 @@ import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-// import resultsView from './views/resultsView.js';
+import recipeView from './views/recipeView.js';
 
 //============================================
 
@@ -104,8 +105,24 @@ const controlBookmarks = function () {
 //============== control add recipe ===============
 const controlAddRecipe = async function (newRecipe) {
   try {
+    // show loading spinner
+    addRecipeView.renderSpinner();
+
     // Upload the new recipe data
     await model.uploadRecipe(newRecipe);
+
+    // render recipe
+    recipeView.render(model.state.recipe);
+
+    // success message
+    addRecipeView.renderMessage();
+
+    // close form window
+    setTimeout(function () {
+      addRecipeView._toggleWindow();
+    }, MODEL_CLOSE_SEC * 1000);
+
+    console.log(model.state.recipe);
   } catch (err) {
     console.error(err);
     addRecipeView.renderError(err.message);
