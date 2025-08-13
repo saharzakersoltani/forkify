@@ -7,8 +7,5 @@ dist/
 # Ignore node modules
 node_modules
 
-# Ignore Vs Code workspace settings
-.vscode/
-
 # Ignore system files (Windows)
 Thumbs.db
