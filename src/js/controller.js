@@ -16,7 +16,6 @@ import recipeView from './views/recipeView.js';
 // if (module.hot) {
 //   module.hot.accept();
 // }
-console.log('welcome to my application!');
 //============== control recipes ======================
 const controlRecipes = async function () {
   try {

@@ -1,5 +1,5 @@
 import View from './view.js';
-import icons from 'url:../../img/icons.svg'; // parcel2
+// import icons from 'url:../../img/icons.svg'; // parcel2
 import previewView from './previewView.js';
 
 class ResultsView extends View {
