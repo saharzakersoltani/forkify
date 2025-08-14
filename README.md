@@ -1,12 +1,12 @@
 # Forkify – Recipe Search App
 
-[Live Demo](https://forkify-zakersoltani.netlify.app/)
-
 Built as part of Jonas Schmedtmann’s _Complete JavaScript Course_ on Udemy, Forkify is a modern recipe search and bookmarking app. You can search, view, bookmark, and scale recipes seamlessly.
+
+[Live Demo](https://forkify-zakersoltani.netlify.app/)
 
 ---
 
-## 📸 Screenshot
+## Screenshot
 
 ![Forkify Screenshot](./screenshot.png)
 
@@ -65,6 +65,8 @@ npm install
 ```bash
 npm start
 ```
+
+---
 
 ## Contact
 
